@@ -17,7 +17,7 @@ export class ApiService {
       responseType: 'text'
     }).pipe(map(x => {
       const currencies = parser.parse(x).ValCurs.Valute;
-      const euro = currencies.find(x => x.CharCode === 'EUR');
+      const euro = currencies.find(val => val.CharCode === 'EUR');
       return {
         value: euro?.Value
       };
