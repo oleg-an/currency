@@ -12,7 +12,7 @@ export class ApiService {
   constructor(private http: HttpClient) {
   }
 
-  getCurrencyValueBySource1(): Observable<CurrencyModel> {
+  getCurrencyValueFromSource1(): Observable<CurrencyModel> {
     return this.http.get('https://www.cbr-xml-daily.ru/daily_utf8.xml', {
       responseType: 'text'
     }).pipe(map(x => {
@@ -24,7 +24,7 @@ export class ApiService {
     }));
   }
 
-  getCurrencyValueBySource2(): Observable<CurrencyModel> {
+  getCurrencyValueFromSource2(): Observable<CurrencyModel> {
     return this.http.get('https://www.cbr-xml-daily.ru/daily_json.js').pipe(map((x: any) => {
       return {
         value: x.Valute.EUR.Value

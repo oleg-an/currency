@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sources.push(this.api.getCurrencyValueBySource1());
-    this.sources.push(this.api.getCurrencyValueBySource2());
+    this.sources.push(this.api.getCurrencyValueFromSource1());
+    this.sources.push(this.api.getCurrencyValueFromSource2());
   }
 }
