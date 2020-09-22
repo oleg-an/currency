@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, of, timer} from 'rxjs';
 import {CurrencyModel} from '../currency.model';
-import {catchError, map, switchMap} from 'rxjs/operators';
+import {catchError, switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,6 @@ export class CurrencyService {
 
     const source = sources[0];
     return source.pipe(
-      map(x => x),
       catchError(_ =>
         this.getFromAvailableSource(sources.filter(val => val !== source))));
   }
