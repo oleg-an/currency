@@ -14,7 +14,7 @@ export class CurrencyComponent implements OnInit {
   currency: Observable<CurrencyModel>;
 
   ngOnInit(): void {
-    this.currency = timer(0, 3000).pipe(
+    this.currency = timer(0, 10000).pipe(
       switchMap(_ => this.getCurrency(this.sources)));
   }
 
