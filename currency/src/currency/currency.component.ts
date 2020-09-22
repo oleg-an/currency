@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {interval, Observable} from 'rxjs';
+import {Observable, of, timer} from 'rxjs';
 import {CurrencyModel} from '../currency.model';
-import {switchMap} from 'rxjs/operators';
+import {catchError, map, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-currency',
@@ -14,8 +14,19 @@ export class CurrencyComponent implements OnInit {
   currency: Observable<CurrencyModel>;
 
   ngOnInit(): void {
-    this.currency = interval(1000).pipe(
-      switchMap(x => this.sources[0])
-    );
+    this.currency = timer(0, 3000).pipe(
+      switchMap(_ => this.getCurrency(this.sources)));
+  }
+
+  private getCurrency(sources: Observable<CurrencyModel>[]): Observable<CurrencyModel> {
+    if (!sources.length) {
+      return of({value: null});
+    }
+
+    const source = sources[0];
+    return source.pipe(
+      map(x => x),
+      catchError(_ =>
+        this.getCurrency(sources.filter(val => val !== source))));
   }
 }
