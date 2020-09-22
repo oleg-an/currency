@@ -10,7 +10,7 @@ import {CurrencyModel} from '../currency.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  @Input() sources: Observable<CurrencyModel>[] = [];
+  sources: Observable<CurrencyModel>[] = [];
 
   constructor(private api: ApiService) {
   }
