@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // порядок задается через массив
+
     this.sources.push(this.api.getCurrencyValueFromSource1());
     this.sources.push(this.api.getCurrencyValueFromSource2());
   }
